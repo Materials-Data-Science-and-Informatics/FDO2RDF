@@ -1,0 +1,51 @@
+#version: 1.0
+#creator_id:
+#  - orcid:0000-0002-2818-5890
+#creator_name:
+#  - Said Fathalla
+#curie_map:
+#   hdo: https://purls.helmholtz-metadaten.de/hob/
+#   schema: https://schema.org/
+#   orcid: https://orcid.org/
+#   hdl: https://hdl.handle.net/
+#   provo: http://www.w3.org/ns/prov#
+#   semapv: https://w3id.org/semapv/vocab/
+#   dcterms: http://purl.org/dc/terms/
+#   dcversion: http://dublincore.org/usage/terms/history/
+#   skos: http://www.w3.org/2004/02/skos/core#
+#mapping_set_id: http://purls.helmholtz-metadaten.de/sssom4fdo
+#mapping_set_description: Manually curated alignment of Helmholtz Metadata Collaboration (HMC) KIP with The Helmholtz Digitisation Ontology (HDO). Intended to be used for the semantic presentation of FAIR digital objects (FDOs).
+#license: https://creativecommons.org/licenses/by/4.0/
+#mapping_date: 2025-01-31
+#creator_id:
+#   orcid:0000-0002-4366-3088
+#   orcid:0000-0002-2818-5890
+#   orcid:0000-0003-2804-688X
+#   orcid:0000-0002-5149-603X
+subject_id	subject_label	predicate_id	object_id	object_label	mapping_justification	author_id	mapping_date
+hdl:21.T11148/c085f1292d7d4a338d96	wasGeneratedBy	skos:broadMatch	provo:wasGeneratedBy	wasGeneratedBy	semapv:ManualMappingCuration	https://orcid.org/0000-0002-4366-3088	2023-03-03
+hdl:21.T11148/c6e4c19f294ee6f41b1e	wasDerviedFrom	skos:broadMatch	provo:wasDerviedFrom	wasDerviedFrom	semapv:ManualMappingCuration	https://orcid.org/0000-0002-4366-3088	2023-03-03
+hdl:21.T11148/ab53242825e85a0a7f76	specializationOf	skos:broadMatch	provo:specializationOf	specializationOf	semapv:ManualMappingCuration	https://orcid.org/0000-0002-4366-3088	2023-03-03
+hdl:21.T11148/8791ac4631ef810de284	wasRevisionOf	skos:broadMatch	provo:wasRevisionOf	wasRevisionOf	semapv:ManualMappingCuration	https://orcid.org/0000-0002-4366-3088	2023-03-03
+hdl:21.T11148/56ba981f09ec54532ea6	hadPrimarySource	skos:broadMatch	provo:hadPrimarySource	hadPrimarySource	semapv:ManualMappingCuration	https://orcid.org/0000-0002-4366-3088	2023-03-03
+hdl:21.T11148/402e89cd01298ae23b61	wasQuotedFrom	skos:broadMatch	provo:wasQuotedFrom	wasQuotedFrom	semapv:ManualMappingCuration	https://orcid.org/0000-0002-4366-3088	2023-03-03
+hdl:21.T11148/98fe217b0a09c8213de1	alternateOf	skos:broadMatch	provo:alternateOf	alternateOf	semapv:ManualMappingCuration	https://orcid.org/0000-0002-4366-3088	2023-03-03
+hdl:21.T11148/076759916209e5d62bd5	kernelInformationProfile	skos:exactMatch	hdo:HDO_00006065	follows kernel information profile	semapv:ManualMappingCuration	https://orcid.org/0000-0002-2818-5890	2025-01-31
+hdl:21.T11148/1c699a5d1b4ad3ba4956	digitalObjectType	skos:exactMatch	hdo:HDO_00006080	has digital object type	semapv:ManualMappingCuration	https://orcid.org/0000-0002-2818-5890	2025-01-31
+hdl:21.T11148/dcd4e99d26a00b8132f8	digitalObjectLocationAccessProtocol	skos:exactMatch	hdo:HDO_00006066	has digital object location access protocol	semapv:ManualMappingCuration	https://orcid.org/0000-0002-2818-5890	2025-01-31
+hdl:21.T11148/796a3ea6c9a38633fb7e	underEmbargoUntil	skos:exactMatch	hdo:HDO_00006076	underEmbargoUntil	semapv:ManualMappingCuration	https://orcid.org/0000-0002-2818-5890	2025-01-31
+hdl:21.T11148/8074aed799118ac263ad	digitalObjectPolicy	skos:exactMatch	hdo:HDO_00006067	has digital object policy	semapv:ManualMappingCuration	https://orcid.org/0000-0002-2818-5890	2025-01-31
+hdl:21.T11148/82e2503c49209e987740	checksum	skos:exactMatch	hdo:HDO_00006077	checksum	semapv:ManualMappingCuration	https://orcid.org/0000-0002-2818-5890	2025-01-31
+hdl:21.T11148/c0c2cefec2b3a0ec7517	signature	skos:exactMatch	hdo:HDO_00006078	signature	semapv:ManualMappingCuration	https://orcid.org/0000-0002-2818-5890	2025-01-31
+hdl:21.T11148/b415e16fbe4ca40f2270	topic	skos:exactMatch	hdo:HDO_00006068	is about topic	semapv:ManualMappingCuration	https://orcid.org/0000-0002-2818-5890	2025-01-31
+hdl:21.T11148/7fdada5846281ef5d461	locationPreview	skos:exactMatch	hdo:HDO_00006079	locationPreview	semapv:ManualMappingCuration	https://orcid.org/0000-0002-2818-5890	2025-01-31
+hdl:21.T11148/d0773859091aeb451528	hasMetadata	skos:exactMatch	hdo:HDO_00006069	has metadata	semapv:ManualMappingCuration	https://orcid.org/0000-0002-2818-5890	2025-01-31
+hdl:21.T11148/4fe7cde52629b61e3b82	IsMetadataFor	skos:exactMatch	hdo:HDO_00006070	is metadata for	semapv:ManualMappingCuration	https://orcid.org/0000-0002-2818-5890	2025-01-31
+hdl:21.T11148/af11e18f83466642c47d	provenanceGraph	skos:exactMatch	hdo:HDO_00006075	has provenance graph	semapv:ManualMappingCuration	https://orcid.org/0000-0002-2818-5890	2025-01-31
+hdl:21.T11148/b8457812905b83046284	digitalObjectLocation	skos:exactMatch	schema:contentUrl	contentUrl	semapv:ManualMappingCuration	https://orcid.org/0000-0002-2818-5890	2025-01-31
+hdl:21.T11148/29f92bd203dd3eaa5a1f	dateCreated	skos:exactMatch	schema:dateCreated	dateCreated	semapv:ManualMappingCuration	https://orcid.org/0000-0002-2818-5890	2025-01-31
+hdl:21.T11148/397d831aa3a9d18eb52c	dateModified	skos:exactMatch	schema:dateModified	dateModified	semapv:ManualMappingCuration	https://orcid.org/0000-0002-2818-5890	2025-01-31
+hdl:21.T11148/c692273deb2772da307f	version	skos:exactMatch	schema:version	version	semapv:ManualMappingCuration	https://orcid.org/0000-0002-2818-5890	2025-01-31
+hdl:21.T11148/2f314c8fe5fb6a0063a8	licenseUrl	skos:exactMatch	schema:license	license	semapv:ManualMappingCuration	https://orcid.org/0000-0002-2818-5890	2025-01-31
+hdl:21.T11148/1a73af9e7ae00182733b	contact	skos:exactMatch	schema:contactPoints	contactPoints	semapv:ManualMappingCuration	https://orcid.org/0000-0002-2818-5890	2025-01-31
+hdl:21.T11148/aafd5fb4c7222e2d950a	dateCreatedRfc3339	skos:exactMatch	schema:dateCreated	dateCreated	semapv:ManualMappingCuration	https://orcid.org/0000-0002-2818-5890	2025-01-31

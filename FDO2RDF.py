@@ -7,43 +7,71 @@ import pandas as pd
 from rdflib import Graph, URIRef, Literal, Namespace
 import csv
 
-# CURIE Prefix Map from the SSSOM file
-CURIE_MAP = {
-    "hdo": "https://purls.helmholtz-metadaten.de/hob/HDO",
-    "schema": "https://schema.org/",
-    "orcid": "https://orcid.org/",
-    "hdl": "https://hdl.handle.net/",
-    "provo": "http://www.w3.org/ns/prov#",
-    "semapv": "https://w3id.org/semapv/vocab/",
-    "dcterms": "http://purl.org/dc/terms/",
-    "dcversion": "http://dublincore.org/usage/terms/history/",
-    "skos": "http://www.w3.org/2004/02/skos/core#"
-}
 
-def curie_to_uri(curie):
+def extract_prefixes_from_sssom(sssom_file_path):
     """
-    Converts CURIE (Compact URI) to a full URI using the provided CURIE prefix map.
-    """
-    prefix, suffix = curie.split(":", 1)
-    if prefix in CURIE_MAP:
-        return CURIE_MAP[prefix] + suffix
-    else:
-        return curie  # Return as-is if prefix is not found
-def get_namespace_for_prefix(prefix):
-    # Example prefix-to-namespace mappings (this can be extended)
-        prefix_map = {
-        "hdl": "https://hdl.handle.net/",
-        "schema": "https://schema.org/",
-        "hdo": "https://purls.helmholtz-metadaten.de/hob/",
-        "provo": "http://www.w3.org/ns/prov#",
-        "other": "http://other.namespace.org/"
-        # Add more prefix mappings as needed
-        }
-        return prefix_map.get(prefix)  # Default namespace for unknown prefixes
+    Extracts CURIE prefixes from an SSSOM file.
 
-def parse_sssom_mapping(sssom_file):
+    Args:
+        sssom_file_path (str): Path to the SSSOM file.
+
+    Returns:
+        dict: A dictionary mapping CURIE prefixes to their full URIs.
     """
-    Parse the SSSOM file and return a mapping of subject_id to object_id (which will be used as predicates).
+    curie_map = {}
+
+    if not sssom_file_path or not os.path.exists(sssom_file_path):
+        print(f"Error: Invalid or missing SSSOM file path '{sssom_file_path}'")
+        sys.exit(1)
+    with open(sssom_file_path, 'r') as file:
+        lines = file.readlines()
+
+        # Flag to indicate if we're inside the #curie_map section
+        in_curie_map_section = False
+
+        for line in lines:
+            # Skip empty lines and comments
+            if line.startswith("#curie_map"):
+                in_curie_map_section = True  # We are inside the curie_map section now
+                continue
+            if line.strip().startswith("#mapping_set_id"):
+                in_curie_map_section =False
+
+            if in_curie_map_section and ":" in line:
+                # Extract prefix and URI from lines in the curie_map section
+                parts = line.split(":", 1)  # Only split on the first colon
+                # print(parts[0])
+                if len(parts) == 2 and line != "#curie_map":
+                    prefix = parts[0].strip().lstrip("#").lstrip()
+                    uri = parts[1].strip()
+                    curie_map[prefix] = uri
+                    #print(prefix[3:]+"::::"+uri)
+                
+    # Return the extracted CURIE Prefix Map as a dictionary
+    return curie_map
+def get_namespace_for_prefix(prefix, curie_map):
+    """
+    Retrieve the full namespace (URI) for a given CURIE prefix from the provided CURIE map.
+
+    Args:
+        prefix (str): The CURIE prefix (e.g., 'schema', 'dcterms', etc.) that needs to be resolved into a full URI. 
+        curie_map (dict): A dictionary mapping CURIE prefixes to their full URIs (e.g., {'schema': 'https://schema.org/'}) 
+
+    Returns:
+        str: The corresponding full URI for the given prefix, or an empty string if the prefix is not found.
+    """
+    return curie_map.get(prefix, "")
+
+def parse_sssom_mapping(sssom_file, curie_map):
+    """
+    Parses an SSSOM mapping file and returns a dictionary mapping subject_id to object_id.
+    
+    Args:
+        sssom_file (str): Path to the SSSOM TSV file.
+        curie_map (dict): Dictionary of CURIE prefixes extracted from the SSSOM file.
+
+    Returns:
+        dict: Mapping of subject_id to object_id (RDF predicates).
     """
     print(f"Parsing SSSOM mappings from '{sssom_file }' ...")
 
@@ -59,7 +87,7 @@ def parse_sssom_mapping(sssom_file):
             # Process CURIE (e.g., ex:subjectID -> http://example.org/subjectID)
             if ':' in json_key:
                 prefix, subject_id = json_key.split(":", 1)
-                namespace = get_namespace_for_prefix(prefix)
+                namespace = get_namespace_for_prefix(prefix, curie_map)
                 json_key = URIRef(f"{namespace}{subject_id}")
             else:
                 json_key = URIRef(json_key).strip()  # If no prefix, use it as a direct URI
@@ -69,7 +97,7 @@ def parse_sssom_mapping(sssom_file):
             # Handle CURIE for ontology_property (predicate)
             if ':' in ontology_property:
                 prefix, object_id = ontology_property.split(":", 1)
-                namespace = get_namespace_for_prefix(prefix)
+                namespace = get_namespace_for_prefix(prefix, curie_map)
                 ontology_property = URIRef(f"{namespace}{object_id}")
             else:
                 ontology_property = URIRef(ontology_property)
@@ -86,37 +114,21 @@ def parse_sssom_mapping(sssom_file):
         sys.exit(1)
     return mapping
     
-def extract_prefixes_from_sssom(sssom_file_path):
-    curie_map = {}
 
-    with open(sssom_file_path, 'r') as file:
-        lines = file.readlines()
-
-        # Flag to indicate if we're inside the #curie_map section
-        in_curie_map_section = False
-
-        for line in lines:
-            # Skip empty lines and comments
-                if line.startswith("#curie_map"):
-                    in_curie_map_section = True  # We are inside the curie_map section now
-                    continue
-                if line.strip().startswith("#mapping_set_id"):
-                    in_curie_map_section =False
-
-                if in_curie_map_section and ":" in line:
-                    # Extract prefix and URI from lines in the curie_map section
-                    parts = line.split(":", 1)  # Only split on the first colon
-                    # print(parts[0])
-                    if len(parts) == 2 and line != "#curie_map":
-                        prefix = parts[0].strip().lstrip("#").lstrip()
-                        uri = parts[1].strip()
-                        curie_map[prefix] = uri
-                        #print(prefix[3:]+"::::"+uri)
-                
-    # Return the extracted CURIE Prefix Map as a dictionary
-    return curie_map
 
 def convert_json_to_rdf(json_data, sssom_data,sssom_file_path,output_RDF_file):
+    """
+    Converts the input JSON data into RDF format using the SSSOM mappings, and writes the output to a Turtle file.
+
+    Args:
+        json_data (list): A list of JSON objects containing the data to be converted into RDF. Each object in the list represents a record with specific fields, such as `pid`, `record`, `key`, and `value`.
+        sssom_data (dict): A dictionary mapping the subject identifiers (keys) to their corresponding RDF predicates (object identifiers) based on the SSSOM mappings.
+        sssom_file_path (str): The path to the SSSOM file used for extracting CURIE mappings, which will be utilized for resolving subject and object identifiers.
+        output_RDF_file (str): The path where the generated RDF data in Turtle format will be saved.
+
+    Returns:
+        None: The function does not return any value but saves the resulting RDF data to a file.
+    """
     mapping = {}
     reader = csv.DictReader(str(sssom_data).strip(), delimiter="\t")
 
@@ -184,7 +196,7 @@ def main():
     # json_file = args.json if args.json else "sample_fdo.json"
     json_file = args.json if args.json else "sample_fdo+children.json"
     mapping_file = args.mappingsFile if args.mappingsFile else "FDO_map.sssom.tsv"
-    output_file = args.output if args.output else "debug_output.ttl"
+    output_RDF_file = args.output if args.output else "FDO-sample.ttl"
 
     # Load JSON data
     try:
@@ -211,11 +223,12 @@ def main():
         print(f"Error: SSSOM file '{mapping_file}' not found or --mapping parameter is not given.")
         sys.exit(1) """
 
+    curie_map = extract_prefixes_from_sssom(mapping_file)
     # Load SSSOM mapping
-    sssom_mappings = parse_sssom_mapping(mapping_file)
+    sssom_mappings = parse_sssom_mapping(mapping_file, curie_map)
 
     # Convert the JSON to RDF in Turtle format
-    output_RDF_file="FDO-sample.ttl"
+    # output_RDF_file="FDO-sample.ttl"
     convert_json_to_rdf(json_data, sssom_mappings,mapping_file, output_RDF_file)
 
 if __name__ == "__main__":

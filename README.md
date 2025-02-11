@@ -3,6 +3,7 @@
 
 This tool converts JSON data into RDF format using Simple Standardized Ontology Mappings (SSSOM) for mapping subject identifiers to object identifiers (RDF predicates). The tool processes the input JSON data, applies SSSOM mappings, and outputs the data in Turtle (`.ttl`) format.
 
+ 
 ## Features
 
 - **Convert JSON to RDF**: The main function of FDO2RDF is to convert FDO metadata in JSON into RDF triples using mappings from an SSSOM file.
@@ -22,6 +23,24 @@ You can install the required dependencies by running the following command:
 ```bash
 pip install pandas rdflib
 ```
+ 
+
+## **Installation**
+
+1. Clone the repository:
+
+```bash
+git clone https://github.com/yourusername/json-to-rdf-converter.git
+cd json-to-rdf-converter
+```
+
+2. Install the dependencies:
+
+```bash
+pip install -r requirements.txt
+```
+
+ 
 
 ## Usage
 
@@ -33,9 +52,29 @@ python FDO2RDF.py --json <input_json_file> --mappingsFile <sssom_file> --output 
 
 ### Arguments
 
-- `--json`: **(Optional)** Path to the input JSON file. If not provided, the default is `sample_fdo+children.json`.
-- `--mappingsFile`: **(Optional)** Path to the SSSOM mapping file (in TSV format). If not provided, the default is `FDO_map.sssom.tsv`.
-- `--output`: **(Optional)** Path to the output Turtle file. If not provided, the default is `FDO-sample.ttl`.
+- **--json**
+  - **Description**: Specify the path to the input JSON file.
+  - **Required**: No 
+  
+- **--mappingsFile**
+
+  - **Description**: Provide the URL or path to the SSSOM mapping file (in **TSV format**).
+  - **Required**: No 
+  
+- **--output**
+
+  - **Description**: Specify the path to the output **RDF Turtle** file.
+  - **Required**: No 
+  
+- **--version**
+
+  - **Description**: Print the version of the tool.
+  - **Required**: No.
+  
+- **--help**
+
+  - **Description**: Show the help message with all available arguments.
+  - **Required**: No.
 
 ### Example Command
 

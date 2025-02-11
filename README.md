@@ -1,14 +1,15 @@
 
 # FDO2RDF Tool
 
-This tool converts JSON data into RDF format using Simple Standardized Ontology Mappings (SSSOM) for mapping subject identifiers to object identifiers (RDF predicates). The tool processes the input JSON data, applies SSSOM mappings, and outputs the data in Turtle (`.ttl`) format.
+This tool converts FAIR digital objects metadata in JSON into RDF triples using Simple Standardized Ontology Mappings (SSSOM) for mapping subject identifiers to object identifiers (RDF predicates). FDO2RDF processes the input JSON data, applies SSSOM mappings (either provided as a file on the local file system or a URL), and outputs the data in Turtle (`.ttl`) format.
 
  
 ## Features
 
 - **Convert JSON to RDF**: The main function of FDO2RDF is to convert FDO metadata in JSON into RDF triples using mappings from an SSSOM file.
-- **Flexible Input and Output**: This tool allows you to specify input files for both the JSON data and the SSSOM mapping, as well as the output RDF file.
-- **Turtle Format**: The output is saved in Turtle (`.ttl`) format, a widely used RDF serialization format.
+- **Flexible Input and Output**: allows you to specify input files for both the JSON data and the SSSOM mapping, as well as the output RDF file.
+- **Turtle Format**: outputs RDF triples in Turtle (`.ttl`) format.
+- **SSOM mappings**: process provided mappings file in TSV either as a file on the local file system or a URL.
 
 ## Requirements
 

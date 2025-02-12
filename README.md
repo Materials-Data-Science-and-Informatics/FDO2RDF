@@ -31,8 +31,8 @@ pip install pandas rdflib
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/yourusername/json-to-rdf-converter.git
-cd json-to-rdf-converter
+git clone https://github.com/Materials-Data-Science-and-Informatics/FDO2RDF.git
+cd FDO2RDF
 ```
 
 2. Install the dependencies:

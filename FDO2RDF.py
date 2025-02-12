@@ -3,6 +3,7 @@ from io import StringIO
 import json
 import os
 import sys
+from urllib.parse import urlparse
 import pandas as pd
 from rdflib import Graph, URIRef, Literal, Namespace
 import requests  # Added requests to handle fetching from URL
@@ -193,12 +194,46 @@ def convert_json_to_rdf(json_data, curie_map, sssom_mappings, output_RDF_file):
                 continue
 
             predicate = URIRef(predicate_uri)
-            obj = Literal(value)
+            # obj = Literal(value)
+            if is_valid_url(value):
+                obj = URIRef(value)  # Wrap URLs as URIRef
+            else:
+                obj = Literal(value)  # Keep non-URL values as literals
             g.add((pid_uri, predicate, obj))
 
     g.serialize(destination=output_RDF_file, format='turtle')
     print(f"RDF data has been written to '{output_RDF_file}'.")
 
+def is_valid_url(value):
+    """
+    Check if a given value is a valid URL.
+
+    This function determines whether a string follows a proper URL format. 
+    It uses Python's `urllib.parse.urlparse` to check if the value contains:
+    - A valid scheme (e.g., 'http', 'https')
+    - A valid network location (netloc), such as a domain name.
+
+    This is useful for distinguishing between URLs (which should be stored as 
+    `URIRef` in RDF) and regular string literals.
+
+    Args:
+        value (str): The value to check.
+
+    Returns:
+        bool: True if the value is a valid URL, False otherwise.
+
+    Example:
+        >>> is_valid_url("https://example.org/resource")
+        True
+        >>> is_valid_url("not_a_url")
+        False
+    """
+    try:
+        parsedURL = urlparse(value)
+        # print (result)
+        return all([parsedURL.scheme, parsedURL.netloc])  # Must have a scheme (http, https) and a domain
+    except:
+        return False
 
 def load_sssom_data(mapping_source):
     """
@@ -326,4 +361,4 @@ def main():
 if __name__ == "__main__":
     main()
 
-
+ 

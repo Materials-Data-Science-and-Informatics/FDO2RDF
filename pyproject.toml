@@ -1,0 +1,51 @@
+[tool.poetry]
+name = "fdo2rdf"
+version = "0.1.0"
+description = "A tool for converting FDO metadata into RDF format"
+authors = ["Said Fathalla <s.fathalla@fz-juelich.de>"]
+maintainers = ["Said Fathalla <s.fathalla@fz-juelich.de>"]
+license = "MIT"
+readme = "README.md"
+homepage = "https://github.com/Materials-Data-Science-and-Informatics/FDO2RDF"
+repository = "https://github.com/Materials-Data-Science-and-Informatics/FDO2RDF"
+documentation = "https://github.com/Materials-Data-Science-and-Informatics/FDO2RDF"
+keywords = ["FDO", "RDF", "FAIR", "Metadata", "Linked Data"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Topic :: Scientific/Engineering :: Information Analysis"
+]
+
+[tool.poetry.dependencies]
+python = "^3.7"
+pandas = "^1.0"
+rdflib = "^6.0"
+requests = "^2.25"
+
+[tool.poetry.dev-dependencies]
+pytest = "^7.0"
+black = "^23.0"
+flake8 = "^6.0"
+mypy = "^1.0"
+
+[tool.poetry.scripts]
+fdo2rdf = "fdo2rdf.main:main"
+
+[tool.poetry.extras]
+dev = ["pytest", "black", "flake8", "mypy"]
+
+[tool.poetry.urls]
+"Bug Tracker" = "https://github.com/Materials-Data-Science-and-Informatics/FDO2RDF/issues"
+"Changelog" = "https://github.com/Materials-Data-Science-and-Informatics/FDO2RDF/releases"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+

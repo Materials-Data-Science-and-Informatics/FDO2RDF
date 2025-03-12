@@ -190,6 +190,22 @@ Contributions are welcome! If you would like to contribute to this project, feel
 
 This tool is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
 
+
+## Acknowledgments <a name="Acknowledgements"></a>
+
+<div>
+<img style="vertical-align: middle;" alt="HMC Logo" src="https://github.com/Materials-Data-Science-and-Informatics/Logos/raw/main/HMC/HMC_Logo_M.png" width=50% height=50% />
+&nbsp;&nbsp;
+<img style="vertical-align: middle;" alt="FZJ Logo" src="https://github.com/Materials-Data-Science-and-Informatics/Logos/raw/main/FZJ/FZJ.png" width=30% height=30% />
+</div>
+<br />
+
+This project was developed at the Institute for Materials Data Science and Informatics
+(IAS-9) of the Jülich Research Center and funded by the Helmholtz Metadata Collaboration
+(HMC), an incubator-platform of the Helmholtz Association within the framework of the
+Information and Data Science strategic initiative.
+
 ---
+
 
 For any questions or issues, please open an issue on the GitHub repository.

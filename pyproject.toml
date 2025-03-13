@@ -1,14 +1,14 @@
-[tool.poetry]
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
 name = "fdo2rdf"
 version = "0.1.0"
 description = "A tool for converting FDO metadata into RDF format"
-authors = ["Said Fathalla <s.fathalla@fz-juelich.de>"]
-maintainers = ["Said Fathalla <s.fathalla@fz-juelich.de>"]
-license = "MIT"
+authors = [{ name = "Said Fathalla", email = "s.fathalla@fz-juelich.de" }]
+license = { text = "MIT" }
 readme = "README.md"
-homepage = "https://github.com/Materials-Data-Science-and-Informatics/FDO2RDF"
-repository = "https://github.com/Materials-Data-Science-and-Informatics/FDO2RDF"
-documentation = "https://github.com/Materials-Data-Science-and-Informatics/FDO2RDF"
 keywords = ["FDO", "RDF", "FAIR", "Metadata", "Linked Data"]
 classifiers = [
     "Development Status :: 4 - Beta",
@@ -22,30 +22,23 @@ classifiers = [
     "Programming Language :: Python :: 3.10",
     "Topic :: Scientific/Engineering :: Information Analysis"
 ]
+dependencies = [
+    "pandas>=1.0",
+    "rdflib>=6.0",
+    "requests>=2.25"
+]
 
-[tool.poetry.dependencies]
-python = "^3.7"
-pandas = "^1.0"
-rdflib = "^6.0"
-requests = "^2.25"
+[project.optional-dependencies]
+dev = ["pytest>=7.0", "black>=23.0", "flake8>=6.0", "mypy>=1.0"]
 
-[tool.poetry.dev-dependencies]
-pytest = "^7.0"
-black = "^23.0"
-flake8 = "^6.0"
-mypy = "^1.0"
+[project.scripts]
+fdo2rdf = "fdo2rdf.cli:main"
 
-[tool.poetry.scripts]
-fdo2rdf = "fdo2rdf.main:main"
+[project.urls]
+homepage = "https://github.com/Materials-Data-Science-and-Informatics/FDO2RDF"
+repository = "https://github.com/Materials-Data-Science-and-Informatics/FDO2RDF"
+documentation = "https://github.com/Materials-Data-Science-and-Informatics/FDO2RDF"
 
-[tool.poetry.extras]
-dev = ["pytest", "black", "flake8", "mypy"]
-
-[tool.poetry.urls]
-"Bug Tracker" = "https://github.com/Materials-Data-Science-and-Informatics/FDO2RDF/issues"
-"Changelog" = "https://github.com/Materials-Data-Science-and-Informatics/FDO2RDF/releases"
-
-[build-system]
-requires = ["poetry-core"]
-build-backend = "poetry.core.masonry.api"
-
+[tool.setuptools]
+packages = ["fdo2rdf"]
+package-dir = {"" = "src"}

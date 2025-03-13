@@ -1,8 +1,4 @@
 #version: 1.0
-#creator_id:
-#  - orcid:0000-0002-2818-5890
-#creator_name:
-#  - Said Fathalla
 #curie_map:
 #   hdo: https://purls.helmholtz-metadaten.de/hob/
 #   schema: https://schema.org/
@@ -17,11 +13,11 @@
 #mapping_set_description: Manually curated alignment of Helmholtz Metadata Collaboration (HMC) KIP with The Helmholtz Digitisation Ontology (HDO). Intended to be used for the semantic presentation of FAIR digital objects (FDOs).
 #license: https://creativecommons.org/licenses/by/4.0/
 #mapping_date: 2025-01-31
-#creator_id:
-#   orcid:0000-0002-4366-3088
-#   orcid:0000-0002-2818-5890
-#   orcid:0000-0003-2804-688X
-#   orcid:0000-0002-5149-603X
+#creator_name:
+#   Said Fathalla
+#   Pier Luigi Buttigieg
+#   Thomas Jejkal
+#   Volker Hofmann
 subject_id	subject_label	predicate_id	object_id	object_label	mapping_justification	author_id	mapping_date
 hdl:21.T11148/c085f1292d7d4a338d96	wasGeneratedBy	skos:broadMatch	provo:wasGeneratedBy	wasGeneratedBy	semapv:ManualMappingCuration	https://orcid.org/0000-0002-4366-3088	2023-03-03
 hdl:21.T11148/c6e4c19f294ee6f41b1e	wasDerviedFrom	skos:broadMatch	provo:wasDerviedFrom	wasDerviedFrom	semapv:ManualMappingCuration	https://orcid.org/0000-0002-4366-3088	2023-03-03

@@ -291,23 +291,21 @@ def main():
 
     parser.add_argument(
         "--json",
-        required=False,
-        default="sample_fdo+children.json",
-        help="Path to the input JSON file (default: sample_fdo+children.json)."
+        required=True,
+        help="Path to the input JSON file."
     )
 
     parser.add_argument(
         "--mappingsFile",
-        required=False,
-        default="https://raw.githubusercontent.com/saidfathalla/SSSOM4FDO/refs/heads/main/FDO_map.sssom.tsv",
-        help="Path or URL to the SSSOM mapping file (default: online SSSOM file)."
+        required=True,
+        help="Path or URL to the SSSOM mapping file."
     )
 
     parser.add_argument(
         "--output",
         required=False,
-        default="FDO-sample.ttl",
-        help="Path to the output RDF Turtle file (default: FDO-sample.ttl)."
+        default="FDO-triples.ttl",
+        help="Path to the output RDF Turtle file (default: FDO-triples.ttl)."
     )
 
     parser.add_argument(

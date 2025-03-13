@@ -28,17 +28,13 @@ pip install pandas rdflib
 
 ## **Installation**
 
-1. Clone the repository:
+You can install `fdo2rdf` directly from the source:
 
 ```bash
 git clone https://github.com/Materials-Data-Science-and-Informatics/FDO2RDF.git
 cd FDO2RDF
-```
+pip install .
 
-2. Install the dependencies:
-
-```bash
-pip install -r requirements.txt
 ```
 
  
@@ -48,19 +44,20 @@ pip install -r requirements.txt
 To run the tool, you can use the following command:
 
 ```bash
-python FDO2RDF.py --json <input_json_file> --mappingsFile <sssom_file> --output <output_rdf_file>
+fdo2rdf --json src/fdo2rdf/samples/sample-FDO.json --mappingsFile src/fdo2rdf/mappings/Helmholtz-KIP-mappings.tsv 
 ```
+you can either specify the output file using the `--output` parameter or it will be automatically generated into the local directory as `DO-triples.ttl`.
 
 ### Arguments
 
 - **--json**
   - **Description**: Specify the path to the input JSON file.
-  - **Required**: No 
+  - **Required**: Yes 
   
 - **--mappingsFile**
 
   - **Description**: Provide the URL or path to the SSSOM mapping file (in **TSV format**).
-  - **Required**: No 
+  - **Required**: Yes
   
 - **--output**
 

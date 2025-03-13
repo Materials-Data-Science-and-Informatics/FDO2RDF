@@ -15,16 +15,11 @@ This tool converts FAIR digital objects metadata in JSON into RDF triples using 
 
 - **Python 3.x**: The tool is compatible with Python 3.
 - **Required Libraries**:
-  - `pandas`: For reading and processing the SSSOM file.
-  - `rdflib`: For creating and manipulating RDF graphs.
-  - `argparse`: For handling command-line arguments.
+  - `pandas`: for reading and processing the SSSOM file.
+  - `rdflib`: for creating and manipulating RDF graphs.
+  - `argparse`: for handling command-line arguments.
+  - `requests`: for handeling HTTP requests.
 
-You can install the required dependencies by running the following command:
-
-```bash
-pip install pandas rdflib
-```
- 
 
 ## **Installation**
 
@@ -44,9 +39,9 @@ pip install .
 To run the tool, you can use the following command:
 
 ```bash
-fdo2rdf --json src/fdo2rdf/samples/sample-FDO.json --mappingsFile src/fdo2rdf/mappings/Helmholtz-KIP-mappings.tsv 
+fdo2rdf --json 'src/fdo2rdf/samples/sample-FDO.json' --mappingsFile 'src/fdo2rdf/mappings/Helmholtz-KIP-mappings.tsv'
 ```
-you can either specify the output file using the `--output` parameter or it will be automatically generated into the local directory as `DO-triples.ttl`.
+You can either specify the output file using the `--output` parameter, or it will be automatically generated into the local directory as `FDO-triples.ttl`.
 
 ### Arguments
 
@@ -73,12 +68,6 @@ you can either specify the output file using the `--output` parameter or it will
 
   - **Description**: Show the help message with all available arguments.
   - **Required**: No.
-
-### Example Command
-
-```bash
-python FDO2RDF.py --json sample_fdo.json --mappingsFile FDO_map.sssom.tsv --output my_output.ttl
-```
 
 ## File Format
 

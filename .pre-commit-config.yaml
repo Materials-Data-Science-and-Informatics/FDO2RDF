@@ -1,0 +1,27 @@
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.0.1
+    hooks:
+      - id: trailing-whitespace  # Removes trailing whitespace
+      - id: end-of-file-fixer  # Ensures file ends with a newline
+      - id: check-yaml  # Validates YAML files
+
+  - repo: https://github.com/psf/black
+    rev: 23.1.0
+    hooks:
+      - id: black  # Formats Python code
+  - repo: local
+    hooks:
+      - id: validate-sssom
+        name: Validate SSSOM TSV Files
+        entry: python scripts/validate_sssom.py
+        language: system
+        types: [file]
+        files: \.tsv$
+
+      - id: sssom-validate
+        name: Validate SSSOM TSV with sssom CLI
+        entry: sssom validate
+        language: python
+        types: [file]
+        files: \.tsv$

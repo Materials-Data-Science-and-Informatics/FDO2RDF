@@ -3,7 +3,7 @@
 
 This tool converts FAIR digital objects metadata in JSON into RDF triples using Simple Standardized Ontology Mappings (SSSOM) for mapping subject identifiers to object identifiers (RDF predicates). FDO2RDF processes the input JSON data, applies SSSOM mappings (either provided as a file on the local file system or a URL), and outputs the data in Turtle (`.ttl`) format.
 
- 
+
 ## Features
 
 - **Convert JSON to RDF**: The main function of FDO2RDF is to convert FDO metadata in JSON into RDF triples using mappings from an SSSOM file.
@@ -32,7 +32,7 @@ pip install .
 
 ```
 
- 
+
 
 ## Usage
 
@@ -47,23 +47,23 @@ You can either specify the output file using the `--output` parameter, or it wil
 
 - **--json**
   - **Description**: Specify the path to the input JSON file.
-  - **Required**: Yes 
-  
+  - **Required**: Yes
+
 - **--mappingsFile**
 
   - **Description**: Provide the URL or path to the SSSOM mapping file (in **TSV format**).
   - **Required**: Yes
-  
+
 - **--output**
 
   - **Description**: Specify the path to the output **RDF Turtle** file.
-  - **Required**: No 
-  
+  - **Required**: No
+
 - **--version**
 
   - **Description**: Print the version of the tool.
   - **Required**: No.
-  
+
 - **--help**
 
   - **Description**: Show the help message with all available arguments.

@@ -13,8 +13,8 @@ def extract_prefixes_from_sssom(sssom_data):
     """
     Extract CURIE prefixes from an SSSOM mapping file.
 
-    The SSSOM file contains a section starting with `#curie_map` that defines 
-    mappings between CURIE prefixes (short identifiers) and their corresponding full URIs. 
+    The SSSOM file contains a section starting with `#curie_map` that defines
+    mappings between CURIE prefixes (short identifiers) and their corresponding full URIs.
     This function scans the file content, extracts these mappings, and returns them as a dictionary.
 
     Args:
@@ -29,7 +29,7 @@ def extract_prefixes_from_sssom(sssom_data):
               }
     """
     curie_map = {}
-    
+
     if isinstance(sssom_data, dict):
         sssom_data = json.dumps(sssom_data)  # Convert to string if it's a dictionary.
 
@@ -60,14 +60,13 @@ def extract_prefixes_from_sssom(sssom_data):
     return curie_map
 
 
-
 def get_namespace_for_prefix(prefix, curie_map):
     """
     Retrieve the full namespace (URI) for a given CURIE prefix.
 
     Args:
-        prefix (str): The CURIE prefix (e.g., 'schema', 'dcterms', etc.) that needs to be resolved into a full URI. 
-        curie_map (dict): A dictionary mapping CURIE prefixes to their full URIs (e.g., {'schema': 'https://schema.org/'}) 
+        prefix (str): The CURIE prefix (e.g., 'schema', 'dcterms', etc.) that needs to be resolved into a full URI.
+        curie_map (dict): A dictionary mapping CURIE prefixes to their full URIs (e.g., {'schema': 'https://schema.org/'})
 
     Returns:
         str: The corresponding full URI for the given prefix, or an empty string if the prefix is not found.
@@ -78,7 +77,7 @@ def get_namespace_for_prefix(prefix, curie_map):
 def parse_sssom_mapping(sssom_data, curie_map):
     """
     Parses an SSSOM mapping file and returns a dictionary mapping subject_id to object_id.
-    
+
     Args:
         sssom_data (str): The raw SSSOM data (either from URL or local file content).
         curie_map (dict): Dictionary of CURIE prefixes extracted from the SSSOM file.
@@ -97,14 +96,14 @@ def parse_sssom_mapping(sssom_data, curie_map):
             json_key = row["subject_id"]
             ontology_property = row["object_id"]
 
-            if ':' in json_key:
+            if ":" in json_key:
                 prefix, subject_id = json_key.split(":", 1)
                 namespace = get_namespace_for_prefix(prefix, curie_map)
                 json_key = URIRef(f"{namespace}{subject_id}")
             else:
                 json_key = URIRef(json_key).strip()
 
-            if ':' in ontology_property:
+            if ":" in ontology_property:
                 prefix, object_id = ontology_property.split(":", 1)
                 namespace = get_namespace_for_prefix(prefix, curie_map)
                 ontology_property = URIRef(f"{namespace}{object_id}")
@@ -122,19 +121,19 @@ def parse_sssom_mapping(sssom_data, curie_map):
 
 def convert_json_to_rdf(json_data, curie_map, sssom_mappings, output_RDF_file):
     """
-    Converts the input JSON data into RDF format using SSSOM mappings and CURIE prefix mappings, 
+    Converts the input JSON data into RDF format using SSSOM mappings and CURIE prefix mappings,
     and writes the resulting RDF data to a Turtle file.
 
-    This function processes the input JSON data and, for each record, uses the provided SSSOM 
-    mappings to generate the RDF triples. CURIE prefixes are resolved using the curie_map to form 
+    This function processes the input JSON data and, for each record, uses the provided SSSOM
+    mappings to generate the RDF triples. CURIE prefixes are resolved using the curie_map to form
     valid RDF URIs. The resulting RDF graph is serialized to a Turtle format file.
 
     Args:
-        json_data (list): A list of JSON objects, where each object contains the data that 
-                          needs to be converted to RDF format. Each object is expected to have a 
-                          'pid' key (the subject) and a 'record' key containing key-value pairs 
+        json_data (list): A list of JSON objects, where each object contains the data that
+                          needs to be converted to RDF format. Each object is expected to have a
+                          'pid' key (the subject) and a 'record' key containing key-value pairs
                           (the predicates and objects) to be added to the RDF graph.
-                          
+
                           Example:
                           [
                               {
@@ -145,8 +144,8 @@ def convert_json_to_rdf(json_data, curie_map, sssom_mappings, output_RDF_file):
                                   ]
                               }
                           ]
-                          
-        curie_map (dict): A dictionary mapping CURIE prefixes to their full URIs. This is used to 
+
+        curie_map (dict): A dictionary mapping CURIE prefixes to their full URIs. This is used to
                           resolve CURIEs (e.g., 'schema:name') into full URIs (e.g., 'https://schema.org/name').
 
                           Example:
@@ -155,21 +154,21 @@ def convert_json_to_rdf(json_data, curie_map, sssom_mappings, output_RDF_file):
                               "schema": "https://schema.org/"
                           }
 
-        sssom_mappings (dict): A dictionary mapping subject identifiers (as URIs or CURIEs) to their 
-                               corresponding RDF predicates (object identifiers). This is derived from 
+        sssom_mappings (dict): A dictionary mapping subject identifiers (as URIs or CURIEs) to their
+                               corresponding RDF predicates (object identifiers). This is derived from
                                parsing the SSSOM mapping file.
 
-        output_RDF_file (str): The path to the output Turtle (.ttl) file where the generated RDF data 
+        output_RDF_file (str): The path to the output Turtle (.ttl) file where the generated RDF data
                                will be saved.
 
     Returns:
-        None: The function does not return any value but writes the resulting RDF data to the 
+        None: The function does not return any value but writes the resulting RDF data to the
               specified output file.
     """
-    
+
     if not curie_map:
         print("ERROR: curie_map is EMPTY inside convert_json_to_rdf()!")
-    
+
     g = Graph()
 
     # Explicitly bind the 'hdo' prefix to its URI
@@ -201,19 +200,20 @@ def convert_json_to_rdf(json_data, curie_map, sssom_mappings, output_RDF_file):
                 obj = Literal(value)  # Keep non-URL values as literals
             g.add((pid_uri, predicate, obj))
 
-    g.serialize(destination=output_RDF_file, format='turtle')
+    g.serialize(destination=output_RDF_file, format="turtle")
     print(f"RDF data has been written to '{output_RDF_file}'.")
+
 
 def is_valid_url(value):
     """
     Check if a given value is a valid URL.
 
-    This function determines whether a string follows a proper URL format. 
+    This function determines whether a string follows a proper URL format.
     It uses Python's `urllib.parse.urlparse` to check if the value contains:
     - A valid scheme (e.g., 'http', 'https')
     - A valid network location (netloc), such as a domain name.
 
-    This is useful for distinguishing between URLs (which should be stored as 
+    This is useful for distinguishing between URLs (which should be stored as
     `URIRef` in RDF) and regular string literals.
 
     Args:
@@ -231,9 +231,12 @@ def is_valid_url(value):
     try:
         parsedURL = urlparse(value)
         # print (result)
-        return all([parsedURL.scheme, parsedURL.netloc])  # Must have a scheme (http, https) and a domain
+        return all(
+            [parsedURL.scheme, parsedURL.netloc]
+        )  # Must have a scheme (http, https) and a domain
     except:
         return False
+
 
 def load_sssom_data(mapping_source):
     """
@@ -247,7 +250,7 @@ def load_sssom_data(mapping_source):
     """
     if os.path.isfile(mapping_source):  # Check if it's a local file
         try:
-            with open(mapping_source, "r", encoding="utf-8") as f:
+            with open(mapping_source, encoding="utf-8") as f:
                 return f.read()
         except Exception as e:
             print(f"Error reading local SSSOM file '{mapping_source}': {e}")
@@ -261,11 +264,12 @@ def load_sssom_data(mapping_source):
             print(f"Error fetching SSSOM file from URL '{mapping_source}': {e}")
             sys.exit(1)
 
+
 def main():
     """
     Command-line tool for converting JSON data into RDF using SSSOM mappings.
 
-    This tool reads JSON data containing records, applies mappings from an SSSOM file, 
+    This tool reads JSON data containing records, applies mappings from an SSSOM file,
     and converts the data into RDF format, saving it in a Turtle (.ttl) file.
 
     Features:
@@ -289,30 +293,24 @@ def main():
         description="Convert JSON data to RDF in Turtle format using SSSOM mappings."
     )
 
-    parser.add_argument(
-        "--json",
-        required=True,
-        help="Path to the input JSON file."
-    )
+    parser.add_argument("--json", required=True, help="Path to the input JSON file.")
 
     parser.add_argument(
-        "--mappingsFile",
-        required=True,
-        help="Path or URL to the SSSOM mapping file."
+        "--mappingsFile", required=True, help="Path or URL to the SSSOM mapping file."
     )
 
     parser.add_argument(
         "--output",
         required=False,
         default="FDO-triples.ttl",
-        help="Path to the output RDF Turtle file (default: FDO-triples.ttl)."
+        help="Path to the output RDF Turtle file (default: FDO-triples.ttl).",
     )
 
     parser.add_argument(
         "--version",
         action="version",
         version="1.0.0",
-        help="Show program version and exit."
+        help="Show program version and exit.",
     )
 
     args = parser.parse_args()
@@ -332,7 +330,7 @@ def main():
             sys.exit(1)
     else:
         try:
-            with open(mapping_source, "r", encoding="utf-8") as file:
+            with open(mapping_source, encoding="utf-8") as file:
                 sssom_data = file.read()
         except FileNotFoundError:
             print(f"Error: SSSOM file '{mapping_source}' not found.")
@@ -340,7 +338,7 @@ def main():
 
     # Load JSON data
     try:
-        with open(json_file, "r", encoding="utf-8") as f:
+        with open(json_file, encoding="utf-8") as f:
             json_data = json.load(f)
     except FileNotFoundError:
         print(f"Error: JSON file '{json_file}' not found.")
@@ -356,7 +354,6 @@ def main():
     # Convert JSON data to RDF
     convert_json_to_rdf(json_data, curie_map, sssom_mappings, output_RDF_file)
 
+
 if __name__ == "__main__":
     main()
-
- 

@@ -1,3 +1,8 @@
+![Pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit)
+![Black](https://img.shields.io/badge/code%20style-black-000000.svg)
+![SSSOM](https://img.shields.io/badge/SSSOM-validated-blue)
+![Python](https://img.shields.io/badge/Python-3.9-blue?logo=python)
+![License](https://img.shields.io/github/license/Materials-Data-Science-and-Informatics/FDO2RDF)
 
 # FDO2RDF Tool
 

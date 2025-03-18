@@ -1,0 +1,25 @@
+cff-version: 1.2.0
+message: If you use this software, please cite it using these metadata.
+type: software
+title: FDO2RDF
+abstract: A tool for converting FDO metadata into RDF format.
+version: 1.0.0
+keywords:
+  - FDO
+  - RDF
+  - FAIR
+  - Metadata
+  - Linked Data
+authors:
+  - orcid: https://orcid.org/0000-0002-2818-5890
+    family-names: Fathalla
+    given-names: Said
+    email: s.fathalla@fz-juelich.de
+contact:
+  - orcid: https://orcid.org/0000-0002-2818-5890
+    family-names: Fathalla
+    given-names: Said
+    email: s.fathalla@fz-juelich.de
+license: MIT
+url: https://github.com/Materials-Data-Science-and-Informatics/FDO2RDF
+repository-code: https://github.com/Materials-Data-Science-and-Informatics/FDO2RDF

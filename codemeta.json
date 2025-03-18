@@ -1,0 +1,47 @@
+{
+  "@context": [
+    "https://doi.org/10.5063/schema/codemeta-2.0",
+    "https://w3id.org/software-iodata",
+    "https://raw.githubusercontent.com/jantman/repostatus.org/master/badges/latest/ontology.jsonld",
+    "https://schema.org",
+    "https://w3id.org/software-types"
+  ],
+  "@type": "SoftwareSourceCode",
+  "author": [
+    {
+      "@type": "Person",
+      "givenName": "Said",
+      "familyName": "Fathalla",
+      "email": "s.fathalla@fz-juelich.de",
+      "@id": "https://orcid.org/0000-0002-2818-5890",
+      "identifier": "https://orcid.org/0000-0002-2818-5890"
+    }
+  ],
+  "name": "FDO2RDF",
+  "description": "A tool for converting FDO metadata into RDF format.",
+  "version": "1.0.0",
+  "keywords": [
+    "FDO",
+    "RDF",
+    "FAIR",
+    "Metadata",
+    "Linked Data"
+  ],
+  "maintainer": [
+    {
+      "@type": "Person",
+      "givenName": "Said",
+      "familyName": "Fathalla",
+      "email": "s.fathalla@fz-juelich.de",
+      "@id": "https://orcid.org/0000-0002-2818-5890",
+      "identifier": "https://orcid.org/0000-0002-2818-5890"
+    }
+  ],
+  "license": [
+    "https://spdx.org/licenses/MIT"
+  ],
+  "softwareHelp": "https://github.com/Materials-Data-Science-and-Informatics/FDO2RDF",
+  "codeRepository": "https://github.com/Materials-Data-Science-and-Informatics/FDO2RDF",
+  "buildInstructions": "https://github.com/Materials-Data-Science-and-Informatics/FDO2RDF",
+  "url": "https://github.com/Materials-Data-Science-and-Informatics/FDO2RDF"
+}

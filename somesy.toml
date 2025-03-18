@@ -1,0 +1,32 @@
+[project]
+name = "FDO2RDF"
+version = "1.0.0"
+description = "A tool for converting FDO metadata into RDF format."
+keywords = ["FDO", "RDF", "FAIR", "Metadata", "Linked Data"]
+license = "MIT"
+repository = "https://github.com/Materials-Data-Science-and-Informatics/FDO2RDF"
+homepage = "https://github.com/Materials-Data-Science-and-Informatics/FDO2RDF"
+documentation = "https://github.com/Materials-Data-Science-and-Informatics/FDO2RDF"
+
+[[project.people]]
+family-names = "Fathalla"
+given-names = "Said"
+email = "s.fathalla@fz-juelich.de"
+orcid = "https://orcid.org/0000-0002-2818-5890"
+contribution = "The author of first iteration of pida website and maintainer of PIDA repository."
+contribution_begin = "2023-03-01"
+contribution_types = ["ideas", "design"]
+maintainer = true
+author = true
+
+[config]
+no_sync_cff = false
+cff_file = "CITATION.cff"
+no_sync_pyproject = false
+pyproject_file = "pyproject.toml"
+no_sync_codemeta = false
+codemeta_file = "codemeta.json"
+no_sync_package_json = false
+show_info = false
+verbose = false
+debug = true

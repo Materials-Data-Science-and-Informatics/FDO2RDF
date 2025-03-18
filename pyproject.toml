@@ -3,13 +3,20 @@ requires = ["setuptools", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "fdo2rdf"
-version = "0.1.0"
-description = "A tool for converting FDO metadata into RDF format"
-authors = [{ name = "Said Fathalla", email = "s.fathalla@fz-juelich.de" }]
-license = { text = "MIT" }
+name = "FDO2RDF"
+version = "1.0.0"
+description = "A tool for converting FDO metadata into RDF format."
+authors = [
+    {name = "Said Fathalla", email = "s.fathalla@fz-juelich.de"},
+]
 readme = "README.md"
-keywords = ["FDO", "RDF", "FAIR", "Metadata", "Linked Data"]
+keywords = [
+    "FDO",
+    "RDF",
+    "FAIR",
+    "Metadata",
+    "Linked Data",
+]
 classifiers = [
     "Development Status :: 4 - Beta",
     "Intended Audience :: Developers",
@@ -27,6 +34,12 @@ dependencies = [
     "rdflib>=6.0",
     "requests>=2.25"
 ]
+maintainers = [
+    {name = "Said Fathalla", email = "s.fathalla@fz-juelich.de"},
+]
+
+[project.license]
+text = "MIT"
 
 [project.optional-dependencies]
 dev = ["pytest>=7.0", "black>=23.0", "flake8>=6.0", "mypy>=1.0"]
@@ -42,3 +55,9 @@ documentation = "https://github.com/Materials-Data-Science-and-Informatics/FDO2R
 [tool.setuptools]
 packages = ["fdo2rdf"]
 package-dir = {"" = "src"}
+
+[tool.poetry]
+name = "fdo2rdf"
+version = "0.1.0"
+description = "A tool for converting FDO metadata into RDF format"
+authors = ["Said Fathalla <s.fathalla@fz-juelich.de>"]

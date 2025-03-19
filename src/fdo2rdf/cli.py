@@ -112,7 +112,7 @@ def parse_sssom_mapping(sssom_data, curie_map):
 
             mapping[json_key] = ontology_property
 
-    except Exception as e:
+    except Exception(FileNotFoundError, PermissionError, OSError) as e:
         print(f"Error reading SSSOM mapping: {e}")
         sys.exit(1)
 
@@ -354,6 +354,4 @@ def main():
     # Convert JSON data to RDF
     convert_json_to_rdf(json_data, curie_map, sssom_mappings, output_RDF_file)
 
-
-if __name__ == "__main__":
     main()

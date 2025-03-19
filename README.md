@@ -178,10 +178,10 @@ The following pre-commit hooks are performed to ensure code and data quality:
 
 - **Trim trailing whitespace**: Removes unnecessary whitespace from files.
 - **Check YAML**: Validates YAML files for correct syntax.
-- **Black**: Formats Python code using [Black](https://black.readthedocs.io/) for consistency.
+- **Code Formating**: Formats Python code using [Black](https://black.readthedocs.io/) for consistency.
 - **Validate SSSOM TSV Files**: Ensures that SSSOM TSV files are correctly formatted.
 - **Validate SSSOM TSV with sssom CLI**: Runs additional validation checks on SSSOM TSV files using the `sssom` CLI.
-- **Somesy**: Automates metadata management for repositories.
+- **Metadata management**: Automates the project metadata by keeping it in sync using [Somesy](https://github.com/Materials-Data-Science-and-Informatics/somesy/tree/main).
 
 These hooks help maintain the project's clean, standardized, and error-free files.
 
